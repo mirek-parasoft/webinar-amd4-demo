@@ -28,6 +28,7 @@ typedef struct temp_sensors {
 
 _Atomic temp_sensors thermal_state;
 
+/*Move to header*/
 temp_sensors get_thermal_state_hw();
 
 
