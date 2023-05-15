@@ -1,6 +1,6 @@
 CC=gcc
 INCLUDE_FLAGS=-I.
-LINK_FLAGS=
+LINK_FLAGS=-pthread
 DEBUG_FLAGS=
 CFLAGS=-g -std=c18 -w
 
