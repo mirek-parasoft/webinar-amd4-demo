@@ -53,7 +53,7 @@ void* periodic_sensors_callibaration(void * ptr)
     return NULL;
 }
 
-void * periodic_sensors_read(void *)
+void * periodic_sensors_read(void * ptr)
 {
     while (true) {
         temp_sensors current_value;
