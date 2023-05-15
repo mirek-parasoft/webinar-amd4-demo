@@ -1,0 +1,6 @@
+.bazelrc
+.cpptest/*
+reports/*
+*.o
+*.exe
+*.bdf
