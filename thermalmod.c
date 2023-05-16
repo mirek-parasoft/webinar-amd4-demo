@@ -47,12 +47,12 @@ void update_thermal_state()
 void * periodic_sensors_scan(void * ptr)
 {
     while (true) {
-        mtx_lock(reading_lock_mtx);
-        mtx_lock(calibration_lock_mtx);
+        mtx_lock(&reading_lock_mtx);
+        mtx_lock(&calibration_lock_mtx);
         read_sensors(ALL_SENSORS);
         sleep(10);
-        mtx_unlock(calibration_lock_mtx);
-        mtx_unlock(reading_lock_mtx);
+        mtx_unlock(&calibration_lock_mtx);
+        mtx_unlock(&reading_lock_mtx);
     }
     return NULL;
 }
