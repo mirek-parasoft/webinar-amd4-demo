@@ -55,7 +55,7 @@ void* periodic_sensors_callibaration(void * ptr)
         mtx_lock(&lock_reading);
         sleep(500 * 1000);
         mtx_unlock(&lock_reading);
-        mtx_unlock(&lock_reading);
+        mtx_unlock(&lock_calibration);
     }
     return NULL;
 }
@@ -64,11 +64,11 @@ void * periodic_sensors_read(void * ptr)
 {
     while (true) {
         temp_sensors current_value;
-        mtx_lock(&lock_calibration);
         mtx_lock(&lock_reading);
+        mtx_lock(&lock_calibration);
         sleep(50);
-        mtx_unlock(&lock_reading);
         mtx_unlock(&lock_calibration);
+        mtx_unlock(&lock_reading);
     }
     return NULL;
 }
