@@ -8,7 +8,7 @@ SRCS = clock.c \
        driver.c \
        timer.c \
 	   thermalmod.c	\
-	   calibration.c
+	   calibration1.c
 
 OBJ = $(SRCS:.c=.o)
 
