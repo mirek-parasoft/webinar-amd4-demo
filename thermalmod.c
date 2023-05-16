@@ -16,8 +16,8 @@
 thrd_t calibration_th, reading_th;
 
 
-mtx_t lock_calibration;
-mtx_t lock_reading;
+mtx_t mtx_calibration;
+mtx_t mtx_reading;
 
 typedef struct temp_sensors {
  uint16_t upper_sensor;
@@ -42,24 +42,24 @@ void update_thermal_state()
 void* periodic_sensors_callibaration(void * ptr)
 {
     while (true) {
-        mtx_lock(&lock_calibration);
-        mtx_lock(&lock_reading);
+        mtx_lock(&mtx_calibration);
+        mtx_lock(&mtx_reading);
         sleep(500 * 1000);
-        mtx_unlock(&lock_reading);
-        mtx_unlock(&lock_calibration);
+        mtx_unlock(&mtx_reading);
+        mtx_unlock(&mtx_calibration);
     }
     return NULL;
 }
 
-void * periodic_sensors_read(void * ptr)
+void * periodic_sensors_scan(void * ptr)
 {
     while (true) {
         temp_sensors current_value;
-        mtx_lock(&lock_reading);
-        mtx_lock(&lock_calibration);
+        mtx_lock(&mtx_reading);
+        mtx_lock(&mtx_calibration);
         sleep(50);
-        mtx_unlock(&lock_calibration);
-        mtx_unlock(&lock_reading);
+        mtx_unlock(&mtx_calibration);
+        mtx_unlock(&mtx_reading);
     }
     return NULL;
 }
@@ -69,7 +69,7 @@ void initialize()
     int rc_cal, rc_read;
 
     rc_cal  = thrd_create(&calibration_th, (thrd_start_t) periodic_sensors_callibaration, (void *)NULL);
-    rc_read = thrd_create(&reading_th, (thrd_start_t) periodic_sensors_read, (void *) NULL);
+    rc_read = thrd_create(&reading_th, (thrd_start_t) periodic_sensors_scan, (void *) NULL);
 
     if (rc_cal == thrd_error || rc_read == thrd_error) {
         printf("ERORR; thrd_create() call failed\n");
