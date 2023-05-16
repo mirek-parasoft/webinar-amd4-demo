@@ -44,7 +44,6 @@ void update_thermal_state()
 void * periodic_sensors_scan(void * ptr)
 {
     while (true) {
-        temp_sensors current_value;
         mtx_lock(&mtx_reading);
         mtx_lock(&mtx_calibration);
         read_sensors(ALL_SENSORS);
