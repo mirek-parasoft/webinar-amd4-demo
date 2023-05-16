@@ -1,5 +1,5 @@
 # This is a basic workflow to help you get started with the Run C/C++test action for a CMake-based project.
-name: MISRA C:2012 Compliance
+name: MISRA C:2023 Compliance (M2012 + AMD4)
 
 on:
   # Triggers the workflow on push or pull request events but only for the master (main) branch.
