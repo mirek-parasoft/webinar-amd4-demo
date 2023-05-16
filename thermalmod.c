@@ -14,8 +14,8 @@
 thrd_t calibration_th, reading_th;
 
 /* callibration and scanning require exclusive access to sensors */
-mtx_t mtx_calibration;
-mtx_t mtx_reading;
+mtx_t calibration_lock;
+mtx_t reading_lock;
 
 /* Thermal state structure */
 typedef struct temp_sensors {
@@ -42,12 +42,12 @@ void update_thermal_state()
 void * periodic_sensors_scan(void * ptr)
 {
     while (true) {
-        mtx_lock(&mtx_reading);
-        mtx_lock(&mtx_calibration);
+        mtx_lock(&reading_lock);
+        mtx_lock(&calibration_lock);
         read_sensors(ALL_SENSORS);
         sleep(10);
-        mtx_unlock(&mtx_calibration);
-        mtx_unlock(&mtx_reading);
+        mtx_unlock(&calibration_lock);
+        mtx_unlock(&reading_lock);
     }
     return NULL;
 }
