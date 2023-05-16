@@ -40,7 +40,7 @@ void update_thermal_state()
     thermal_state.right_sensor = current_state.right_sensor;
 }
 
-void* periodic_sensors_callibaration(void *)
+void* periodic_sensors_callibaration(void * ptr)
 {
     while (true) {
         mtx_lock(&lock_calibration);
@@ -52,7 +52,7 @@ void* periodic_sensors_callibaration(void *)
     return NULL;
 }
 
-void * periodic_sensors_read(void *)
+void * periodic_sensors_read(void * ptr)
 {
     while (true) {
         temp_sensors current_value;
