@@ -15,9 +15,9 @@ int print_string(char*);
 /* prints a string array to the output device */
 int print_string_array();
 
-void* periodic_sensors_callibaration(void * ptr);
+void* periodic_sensors_callibaration1(void * ptr);
 
-void * periodic_sensors_scan(void * ptr);
+void * periodic_sensors_scan1(void * ptr);
 
 void callibrate_sensors(SENSORS);
 

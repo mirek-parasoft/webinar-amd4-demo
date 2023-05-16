@@ -10,7 +10,6 @@
 #include "thermalmod.h"
 #include "consts.h"
 
-#if NEW_CODE
 
 /* calibration and sensors scanning threads */
 thrd_t calibration_th, reading_th;
@@ -37,14 +36,14 @@ static temp_sensors get_thermal_state_hw();
 void update_thermal_state()
 {
     temp_sensors current_state = get_thermal_state_hw();
-    thermal_state.upper_sensor = current_state.upper_sensor;
+    /*thermal_state.upper_sensor = current_state.upper_sensor;
     thermal_state.lower_sensor = current_state.lower_sensor;
     thermal_state.left_sensor = current_state.left_sensor;
-    thermal_state.right_sensor = current_state.right_sensor;
+    thermal_state.right_sensor = current_state.right_sensor;*/
 }
 
 /* read data from senors every 10 seconds*/
-void * periodic_sensors_scan(void * ptr)
+void * periodic_sensors_scan1(void * ptr)
 {
     while (true) {
         mtx_lock(&reading_lock_mtx);
@@ -61,8 +60,8 @@ void initialize()
 {
     int rc_cal, rc_read;
 
-    rc_read = thrd_create(&reading_th, (thrd_start_t) periodic_sensors_scan, (void *) NULL);
-    rc_cal  = thrd_create(&calibration_th, (thrd_start_t) periodic_sensors_callibaration, (void *)NULL);
+    rc_read = thrd_create(&reading_th, (thrd_start_t) periodic_sensors_scan1, (void *) NULL);
+    rc_cal  = thrd_create(&calibration_th, (thrd_start_t) periodic_sensors_callibaration1, (void *)NULL);
     
     if (rc_cal == thrd_error || rc_read == thrd_error) {
         printf("ERORR; thrd_create() call failed\n");
@@ -92,8 +91,6 @@ void read_sensors(SENSORS sensors) {
             break;
     }
 }
-
-#endif
 
 /*
  * Grabs input from stdin
