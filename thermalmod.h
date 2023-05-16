@@ -25,9 +25,9 @@ void read_sensors(SENSORS);
 
 extern thrd_t calibration_th, reading_th;
 
-extern mtx_t calibration_lock_mtx;
+extern mtx_t calib;
 
-extern mtx_t reading_lock_mtx;
+extern mtx_t read;
 
 #endif /* _input_h_ */
 
