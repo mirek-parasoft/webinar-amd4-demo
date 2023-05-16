@@ -93,7 +93,7 @@ void read_sensors(SENSORS sensors) {
     }
 }
 
-#else
+#endif
 
 /*
  * Grabs input from stdin
