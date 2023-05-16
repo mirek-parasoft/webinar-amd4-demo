@@ -30,6 +30,14 @@ _Atomic temp_sensors thermal_state;
 
 temp_sensors get_thermal_state_hw();
 
+void update_thermal_stat1e()
+{
+    temp_sensors current_state = get_thermal_state_hw();
+    thermal_state.upper_sensor = current_state.upper_sensor;
+    thermal_state.lower_sensor = current_state.lower_sensor;
+    thermal_state.left_sensor = current_state.left_sensor;
+    thermal_state.right_sensor = current_state.right_sensor;
+}
 
 void update_thermal_state()
 {
