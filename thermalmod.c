@@ -9,6 +9,8 @@
 #include "thermalmod.h"
 #include "consts.h"
 
+#if NEW_CODE
+
 /* calibration and sensors scanning threads */
 thrd_t calibration_th, reading_th;
 
@@ -89,6 +91,11 @@ void read_sensors(SENSORS sensors) {
             break;
     }
 }
+
+#else
+void initialize() {}
+#endif 
+
 
 /*
  * Grabs input from stdin
