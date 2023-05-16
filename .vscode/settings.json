@@ -1,4 +1,4 @@
 {
-    "cpptest.testConfiguration": "/home/demo-user/sandbox/webinar-amd4/cpptest/examples/Timer/MISRA C 2023 (MISRA C 2012).properties",
+    "cpptest.testConfiguration": "/home/demo-user/sandbox/webinar-amd4/webinar-amd4-demo/MISRA C 2023 (MISRA C 2012).properties",
     "cpptest.compilerIdentifier": "gcc_11-64"
 }

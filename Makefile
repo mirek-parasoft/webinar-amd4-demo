@@ -7,7 +7,8 @@ CFLAGS=-g -std=c18 -w
 SRCS = clock.c \
        driver.c \
        timer.c \
-	   thermalmod.c	
+	   thermalmod.c	\
+	   calibration.c
 
 OBJ = $(SRCS:.c=.o)
 
