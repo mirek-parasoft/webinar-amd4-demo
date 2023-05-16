@@ -94,9 +94,6 @@ void read_sensors(SENSORS sensors) {
 }
 
 #else
-void initialize() {}
-#endif 
-
 
 /*
  * Grabs input from stdin
