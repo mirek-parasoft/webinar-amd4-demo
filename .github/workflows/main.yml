@@ -3,8 +3,8 @@ name: MISRA C:2012 Compliance
 
 on:
   # Triggers the workflow on push or pull request events but only for the master (main) branch.
-  # push:
-    # branches: [ master, main ]
+  push:
+    branches: [ master, main ]
   pull_request:
     branches: [ master, main ]
 
@@ -33,7 +33,7 @@ jobs:
     # Runs code analysis with C/C++test.
     - name: Run C/C++test
       # Use the 'run-cpptest-action' GitHub action.
-      uses: parasoft/run-cpptest-action@1.0.1
+      uses: parasoft/run-cpptest-action@2.0.0
       # Optional parameters for 'run-cpptest-action'.
       with:
         # For CMake-based projects, use a compile_commands.json file as the input for analysis. 
@@ -46,7 +46,7 @@ jobs:
     # Uploads analysis results in the SARIF format, so that they are displayed as GitHub code scanning alerts.
     - name: Upload results (SARIF)
       if: always()
-      uses: github/codeql-action/upload-sarif@v1
+      uses: github/codeql-action/upload-sarif@v2
       with:
         sarif_file: reports/report.sarif
     
