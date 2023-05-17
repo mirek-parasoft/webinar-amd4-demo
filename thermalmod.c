@@ -10,8 +10,6 @@
 #include "thermalmod.h"
 #include "consts.h"
 
-#if NEW_CODE
-
 /* calibration and sensors scanning threads */
 thrd_t calibration_th, reading_th;
 
@@ -37,10 +35,7 @@ static temp_sensors get_thermal_state_hw();
 void update_thermal_state()
 {
     temp_sensors current_state = get_thermal_state_hw();
-    thermal_state.upper_sensor = current_state.upper_sensor;
-    thermal_state.lower_sensor = current_state.lower_sensor;
-    thermal_state.left_sensor = current_state.left_sensor;
-    thermal_state.right_sensor = current_state.right_sensor;
+    atomic_store(&thermal_state, current_state);
 }
 
 /* read data from senors every 10 seconds*/
@@ -92,8 +87,6 @@ void read_sensors(SENSORS sensors) {
             break;
     }
 }
-
-#endif
 
 /*
  * Grabs input from stdin

@@ -2,7 +2,6 @@
 #include "thermalmod.h"
 #include "consts.h"
 
-#if NEW_CODE
 extern thrd_t calibration_th, reading_th;
 extern mtx_t mutex_calib;
 extern mtx_t mutex_read;
@@ -37,4 +36,3 @@ void callibrate_sensors(SENSORS sensors) {
             break;
     }
 }
-#endif
